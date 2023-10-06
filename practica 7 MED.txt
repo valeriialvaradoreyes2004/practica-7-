@@ -1,0 +1,77 @@
+EJERCICIO 1
+
+class Divisor:
+    def dividir(self, numerador, denominador):
+        try:
+            resultado = numerador / denominador
+            return resultado
+        except ZeroDivisionError:
+            return "Error: No se puede dividir por cero."
+
+# Ejemplo de uso
+divisor = Divisor()
+
+numerador = 10
+denominador = 0
+
+resultado = divisor.dividir(numerador, denominador)
+print(resultado)
+
+EJERCICIO 2 
+
+class ValidadorDeEdad:
+    def validar(self, edad):
+        try:
+            edad_entero = int(edad)
+            if edad_entero >= 0:
+                return True, edad_entero
+            else:
+                return False, "La edad no puede ser un número negativo."
+        except ValueError:
+            return False, "Por favor, ingresa un número entero válido como edad."
+
+# Ejemplo de uso
+validador = ValidadorDeEdad()
+
+try:
+    edad_ingresada = input("Ingresa tu edad: ")
+    es_valido, edad = validador.validar(edad_ingresada)
+    
+    if es_valido:
+        print("Edad válida:", edad)
+    else:
+        print(edad)
+except Exception as e:
+    print("Ocurrió un error:", e)
+
+
+EJERCICIO 3 
+
+class ValidadorContraseña:
+    def __init__(self, longitud_minima):
+        self.longitud_minima = longitud_minima
+    
+    def validar(self, contraseña):
+        try:
+            if len(contraseña) >= self.longitud_minima:
+                return True, "Contraseña válida."
+            else:
+                raise ValueError("La contraseña debe tener al menos {} caracteres.".format(self.longitud_minima))
+        except ValueError as e:
+            return False, str(e)
+
+# Ejemplo de uso
+longitud_minima = 8  # Longitud mínima requerida para la contraseña
+validador = ValidadorContraseña(longitud_minima)
+
+try:
+    contraseña_ingresada = input("Ingresa tu contraseña: ")
+    es_valida, mensaje = validador.validar(contraseña_ingresada)
+    
+    if es_valida:
+        print(mensaje)
+    else:
+        print("Error:", mensaje)
+except Exception as e:
+    print("Ocurrió un error:", e)
+
